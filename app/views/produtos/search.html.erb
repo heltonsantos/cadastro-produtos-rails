@@ -1,0 +1,43 @@
+<!-- Não é mais usado -->
+
+<h1>Buscar produtos</h1>
+
+<%= form_for :search_produtos, url: search_produtos_path, method: :get do |form| %>
+  <%= form.text_field :query, value: params[:search_produtos].presence && params[:search_produtos][:query] %>
+  <%= form.submit 'Buscar' %>
+<% end %>
+
+<% unless @produtos.nil? %>
+  <% if @produtos.empty? %>
+    <h2>Nenhum produto foi encontrado.</h2>
+  <% else %>
+    <h2>Search results</h2>
+
+    <table style="width: 100%;">
+      <thead>
+         <tr>
+           <th>SKU</th>
+           <th>Nome</th>
+           <th>Descrição</th>
+           <th>Quantidade</th>
+           <th>Preço</th>
+           <th colspan="2">Ações</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @produtos.each do |produto| %>
+          <tr>
+            <td><%= produto.sku %></td>
+            <td><%= produto.nome %></td>
+            <td><%= produto.descricao %></td>
+            <td><%= produto.quantidade %></td>
+            <td><%= produto.preco %></td>
+            <td><%= link_to 'Ver', produto_path(produto.id) %></td>
+            <td><%= link_to 'Voltar', produtos_path %></td>
+          </tr>
+        <% end %>
+      <tbody>
+    </table>
+  <% end %>
+<% end %>

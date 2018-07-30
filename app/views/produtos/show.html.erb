@@ -1,0 +1,32 @@
+<p>
+  <strong>SKU:</strong>
+  <%= @produto.sku %>
+</p>
+<p>
+  <strong>Nome:</strong>
+  <%= @produto.nome %>
+</p>
+ 
+<p>
+  <strong>Descrição:</strong>
+  <%= @produto.descricao %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @produto.quantidade %>
+</p>
+
+<p>
+  <strong>Preço:</strong>
+  <%= @produto.preco %>
+</p>
+
+<p>
+  <strong>Código de barras:</strong>
+  <%= @produto.ean %>
+</p>
+
+<%= link_to 'Editar', edit_produto_path(@produto.id) %>
+
+<%= link_to 'Voltar', produtos_path %>
