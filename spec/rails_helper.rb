@@ -50,6 +50,7 @@ RSpec.configure do |config|
 
   config.after(:suite)do
     Produto.__elasticsearch__.delete_index!
+    FileUtils.rm_rf(Dir.glob("db/reports/#{Rails.env}/*"))
   end
 
   config.before(:each) do

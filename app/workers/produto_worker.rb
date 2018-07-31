@@ -4,7 +4,6 @@ class ProdutoWorker
   
   def perform(*args)
     
-    produtos = Produto.all
-    produtos.write_csv
+    Produto.write_csv
   end
 end

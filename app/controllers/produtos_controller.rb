@@ -12,7 +12,7 @@ class ProdutosController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @produtos.to_csv, filename: "produtos-#{Date.today}.csv" }
+      format.csv { send_data @produtos.to_csv, filename: "produtos-report-#{Time.now.to_i}.csv" }
     end
   end 
 

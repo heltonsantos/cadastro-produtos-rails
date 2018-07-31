@@ -116,15 +116,13 @@ describe ProdutosController do
 
   describe "GET report" do
     context 'when the products are reported' do  
-      it "creates a report with all products" do
+      it "creates a report" do
         get :report
 
         expect(response).to redirect_to(produtos_path)
         expect(response.status).to eq(302)
 
-        data = File.read('db/produtos_report.csv')
 
-        expect(data).not_to be_nil
       end
     end  
   end
