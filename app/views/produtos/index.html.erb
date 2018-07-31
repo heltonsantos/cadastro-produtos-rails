@@ -1,5 +1,4 @@
-<div class="container">
-  <h1>Produtos</h1>
+<div class="container p-3">
   <p><%= link_to 'Inicio', produtos_path,
   class: "btn btn-outline-info" %></p>
 
@@ -16,7 +15,7 @@
     <%= form_for :search_produtos, class: 'form-horizontal center', url: produtos_path, method: :get do |form| %>
    
       <%= form.text_field :query, value: params[:search_produtos].presence && params[:search_produtos][:query] %>
-      <%= form.submit 'Buscar', class: 'btn btn-primary btn-sm' %>
+      <%= form.submit 'Buscar', class: 'btn btn-outline-secondary btn-sm' %>
     <% end %>
   </p>
 
@@ -24,7 +23,7 @@
     <% if @produtos.empty? %>
       <h2>Nenhum produto foi encontrado.</h2>
     <% else %>
-      <table>
+      <table class="table">
         <tr>
           <th>SKU</th>
           <th>Nome</th>

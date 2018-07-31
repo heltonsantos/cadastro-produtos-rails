@@ -2,10 +2,10 @@ class Produto
 	include Mongoid::Document
 	include Mongoid::Timestamps
 	include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   index_name ['produtos', Rails.env].join('_')
 
-  include Elasticsearch::Model::Callbacks
-
+  
 	field :sku, type: String
 	field :nome, type: String
 	field :descricao, type: String

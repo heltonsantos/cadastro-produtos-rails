@@ -1,52 +1,54 @@
-<%= form_for @produto do |f| %>
+<div class="container">
+  <%= form_for @produto, class: "form" do |f| %>
 
-  <% if @produto.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@produto.errors.count, "error") %> prohibited
-        this produto from being saved:
-      </h2>
-      <ul>
-        <% @produto.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    <% if @produto.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@produto.errors.count, "error") %> prohibited
+          this produto from being saved:
+        </h2>
+        <ul>
+          <% @produto.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :sku %><br>
+      <%= f.text_field :sku, maxlength: 15, class: "form-control form-control-sm w-25" %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :nome %><br>
+      <%= f.text_field :nome, maxlength: 25, class: "form-control form-control-sm w-50" %>
+    </div>
+   
+     <div class="form-group">
+      <%= f.label :descricao %><br>
+      <%= f.text_area :descricao, maxlength: 100, class: "form-control form-control-sm w-50" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :quantidade %><br>
+      <%= f.number_field :quantidade, :step => 1, class: "form-control form-control-sm w-25" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :preco %><br>
+      <%= f.number_field :preco, :step => 0.01, class: "form-control form-control-sm w-25" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :ean %><br>
+      <%= f.number_field :ean, :step => 1, class: "form-control form-control-sm w-25" %>
+    </div>
+   
+    <div class="form-group">
+      <%= f.submit 'Cadastrar', class: 'btn btn-success' %>
+   </div>
   <% end %>
 
-  <p>
-    <%= f.label :sku %><br>
-    <%= f.text_field :sku, maxlength: 15 %>
-  </p>
-
-  <p>
-    <%= f.label :nome %><br>
-    <%= f.text_field :nome, maxlength: 25 %>
-  </p>
- 
-  <p>
-    <%= f.label :descricao %><br>
-    <%= f.text_area :descricao, maxlength: 100 %>
-  </p>
-
-    <p>
-    <%= f.label :quantidade %><br>
-    <%= f.number_field :quantidade, :step => 1 %>
-  </p>
-
-  <p>
-    <%= f.label :preco %><br>
-    <%= f.number_field :preco, :step => 0.01 %>
-  </p>
-
-  <p>
-    <%= f.label :ean %><br>
-    <%= f.number_field :ean, :step => 1 %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-
-<%= link_to 'Voltar', produtos_path %>
+  <%= link_to 'Voltar', produtos_path %>
+</div>
