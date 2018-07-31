@@ -23,14 +23,8 @@ class Produto
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << [
-        "sku",
-        "nome",
-        "descricao",
-        "quantidade",
-        "preco",
-        "ean"
-      ]
+      csv << %w(sku nome descricao quantidade preco ean)
+
       all.each do |produto|
         csv << [
                 produto.sku, 
@@ -45,14 +39,7 @@ class Produto
 
   def self.write_csv
     csv_string = CSV.generate do |csv|
-      csv << [
-        "sku",
-        "nome",
-        "descricao",
-        "quantidade",
-        "preco",
-        "ean"
-      ]
+      csv << %w(sku nome descricao quantidade preco ean)
 
       all.each do |produto|
         csv << [
@@ -68,7 +55,6 @@ class Produto
     File.open("db/reports/#{Rails.env}/produtos-report-#{Time.now.to_i}.csv", "w") {|f| f.write(csv_string) }
 
   end
-
 
 	def as_indexed_json(options={})
    		self.as_json({

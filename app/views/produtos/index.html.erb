@@ -15,7 +15,7 @@
     <%= form_for :search_produtos, class: 'form-horizontal center', url: produtos_path, method: :get do |form| %>
       <div class="form-group row">
         <%= form.text_field :query, value: params[:search_produtos].presence && params[:search_produtos][:query], class: "form-control form-control-sm w-25" %>
-        <%= form.submit 'Buscar', class: 'btn btn-outline-secondary btn-sm' %>
+        <%= form.submit 'Buscar', class: 'btn btn-outline-secondary btn-sm ml-1' %>
       </div>  
     <% end %>
   </p>
