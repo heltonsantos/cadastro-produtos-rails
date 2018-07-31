@@ -7,8 +7,8 @@ RSpec.describe ProdutoWorker, type: :worker do
   context 'when the worker is created' do
     it "creates workers" do
       
-      ProdutoWorker.perform_async
-      ProdutoWorker.perform_async
+      ProdutoWorker.perform_async("produtos-report-#{Time.now.to_i}.csv")
+      ProdutoWorker.perform_async("produtos-report-#{Time.now.to_i}.csv")
       expect(ProdutoWorker.jobs.size).to eq(2)
 
       ProdutoWorker.drain

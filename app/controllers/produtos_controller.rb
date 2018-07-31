@@ -67,7 +67,9 @@ class ProdutosController < ApplicationController
   end
 
   def report
-    ProdutoWorker.perform_async
+    file_name = "produtos-report-#{Time.now.to_i}.csv"
+    
+    ProdutoWorker.perform_async(file_name)
 
     redirect_to produtos_path
   end 

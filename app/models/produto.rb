@@ -37,7 +37,7 @@ class Produto
     end
   end
 
-  def self.write_csv
+  def self.write_csv(file_name)
     csv_string = CSV.generate do |csv|
       csv << %w(sku nome descricao quantidade preco ean)
 
@@ -52,8 +52,10 @@ class Produto
               ]
       end
     end
-    File.open("db/reports/#{Rails.env}/produtos-report-#{Time.now.to_i}.csv", "w") {|f| f.write(csv_string) }
     
+    #file_path = "db/reports/#{Rails.env}/produtos-report-#{Time.now.to_i}.csv"
+    File.open("db/reports/#{Rails.env}/#{file_name}", "w") {|f| f.write(csv_string) }
+
   end
 
 	def as_indexed_json(options={})
