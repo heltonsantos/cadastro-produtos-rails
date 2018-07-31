@@ -46,6 +46,7 @@ gem 'logstash-event'
 gem 'logstash-logger'
 
 gem 'sidekiq'
+gem 'sidekiq-status'
 
 gem 'bootstrap'
 

@@ -15,6 +15,9 @@ require 'logstash-logger'
 require File.expand_path('../boot', __FILE__)
 require "csv"
 
+require 'sidekiq'
+require 'sidekiq-status'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -37,6 +40,17 @@ module CadastroProdutos
     
     config.active_job.queue_adapter = :sidekiq
 
-    #file_logger = LogStashLogger.new(type: :file, path: 'log/development.log', sync: true)
+    Sidekiq.configure_client do |config|
+        # accepts :expiration (optional)
+        Sidekiq::Status.configure_client_middleware config, expiration: 30.minutes
+    end
+
+    Sidekiq.configure_server do |config|
+      # accepts :expiration (optional)
+      Sidekiq::Status.configure_server_middleware config, expiration: 30.minutes
+
+      # accepts :expiration (optional)
+      Sidekiq::Status.configure_client_middleware config, expiration: 30.minutes
+    end
   end
 end

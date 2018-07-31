@@ -53,7 +53,7 @@ class Produto
       end
     end
     File.open("db/reports/#{Rails.env}/produtos-report-#{Time.now.to_i}.csv", "w") {|f| f.write(csv_string) }
-
+    
   end
 
 	def as_indexed_json(options={})
