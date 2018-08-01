@@ -53,7 +53,6 @@ class Produto
       end
     end
     
-    #file_path = "db/reports/#{Rails.env}/produtos-report-#{Time.now.to_i}.csv"
     File.open("db/reports/#{Rails.env}/#{file_name}", "w") {|f| f.write(csv_string) }
 
   end
