@@ -32,7 +32,8 @@ class Produto
                 produto.descricao,
                 produto.quantidade,
                 produto.preco,
-                produto.ean]
+                produto.ean
+              ]
       end
     end
   end

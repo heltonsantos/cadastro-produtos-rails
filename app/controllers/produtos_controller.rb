@@ -1,5 +1,8 @@
+require 'net/http'
+
 class ProdutosController < ApplicationController
-  before_filter :find_product, except: [:index, :new, :create, :show, :report]
+  
+  before_filter :find_product, except: [:index, :new, :create, :show, :report, :test_send]
 
   def index
     query = params[:search_produtos].presence && params[:search_produtos][:query]
@@ -68,12 +71,27 @@ class ProdutosController < ApplicationController
 
   def report
     file_name = "produtos-report-#{Time.now.to_i}.csv"
+    job_report = JobReport.create({:file_name => file_name, :status => "enqueued"})
     
-    ProdutoWorker.perform_async(file_name)
+    ProdutoWorker.perform_async(job_report._id.to_s)
 
     redirect_to produtos_path
   end 
-  
+
+  def test_send
+    file_path = Dir.glob("db/reports/#{Rails.env}/*.csv")[0]
+    data = File.read(file_path)
+
+    csv = CSV.parse(data, :headers => true)
+    params = {:file => csv}
+    uri = $EMAIL_SERVICE_API + "reports/upload_report"
+   
+    request = Net::HTTP.post_form(URI.parse(uri), params)
+    puts request.body
+
+     redirect_to produtos_path
+
+  end  
 
   private
 

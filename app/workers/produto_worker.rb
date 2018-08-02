@@ -3,8 +3,13 @@ class ProdutoWorker
   include Sidekiq::Status::Worker
   sidekiq_options retry: false
   
-  def perform(file_name)
+  def perform(job_report_id)
+ 		
+ 		job_report = JobReport.find(job_report_id)	
     
-    Produto.write_csv(file_name)
+    Produto.write_csv(job_report.file_name)
+
+    job_report.update({:status => "DONE"})
+    
   end
 end
