@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :report
-      get :test_send
+      get :send_report
     end  
   end
 

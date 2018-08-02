@@ -1,8 +1,8 @@
 require 'net/http'
 
 class ProdutosController < ApplicationController
-  
-  before_filter :find_product, except: [:index, :new, :create, :show, :report, :test_send]
+ 
+  before_filter :find_product, only: [:edit, :update, :destroy]
 
   def index
     query = params[:search_produtos].presence && params[:search_produtos][:query]
@@ -78,7 +78,7 @@ class ProdutosController < ApplicationController
     redirect_to produtos_path
   end 
 
-  def test_send
+  def send_report
     file_path = Dir.glob("db/reports/#{Rails.env}/*.csv")[0]
     data = File.read(file_path)
 
