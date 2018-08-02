@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :search
       get :report
       get :send_report
+      get :send_static_report
     end  
   end
 
