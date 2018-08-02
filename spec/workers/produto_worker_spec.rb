@@ -7,9 +7,12 @@ RSpec.describe ProdutoWorker, type: :worker do
   context 'when the worker is created' do
     it "creates workers" do
       
-      ProdutoWorker.perform_async("produtos-report-#{Time.now.to_i}.csv")
-      ProdutoWorker.perform_async("produtos-report-#{Time.now.to_i}.csv")
-      expect(ProdutoWorker.jobs.size).to eq(2)
+      file_name = "produtos-report-#{Time.now.to_i}.csv"
+      job_report = JobReport.create({:file_name => file_name, :status => "enqueued"})
+    
+
+      ProdutoWorker.perform_async(job_report._id.to_s)
+      expect(ProdutoWorker.jobs.size).to eq(1)
 
       ProdutoWorker.drain
       expect(ProdutoWorker.jobs.size).to eq(0)    
