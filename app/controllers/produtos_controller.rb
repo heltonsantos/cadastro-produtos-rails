@@ -79,28 +79,9 @@ class ProdutosController < ApplicationController
   end 
 
   def send_report
-    file_name = "produtos-report-#{Time.now.to_i}.csv"
-    job_report = JobReport.create({:file_name => file_name, :status => "enqueued"})
-    
-    SendReportWorker.perform_async(job_report._id.to_s)
-
+    SendReportWorker.perform_async
 
     redirect_to produtos_path
-
-  end
-
-  def send_static_report
-    file_path = Dir.glob("db/reports/#{Rails.env}/*.csv")[0]
-    data = File.read(file_path)
-
-    csv = CSV.parse(data, :headers => true)
-    params = {:file => csv}
-    uri = $EMAIL_SERVICE_API + "reports/upload_report"
-
-    RequestHelper.request_post_form(uri, params)
-
-    redirect_to produtos_path
-
   end    
 
   private
