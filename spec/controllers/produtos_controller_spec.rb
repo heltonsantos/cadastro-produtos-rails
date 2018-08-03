@@ -60,7 +60,7 @@ describe ProdutosController do
         produto = Produto.find_by sku: 'CA-123456710'
 
         params = { id: produto.id }
-        post :show, params
+        get :show, params
 
         expect(response.body).to match /CA-123456710/m
         expect(response).to render_template("show")
@@ -118,6 +118,19 @@ describe ProdutosController do
     context 'when the products are reported' do  
       it "creates a report" do
         get :report
+
+        expect(response).to redirect_to(produtos_path)
+        expect(response.status).to eq(302)
+
+
+      end
+    end  
+  end
+
+  describe "POST send_report" do
+    context 'when the products are reported and sent by email' do  
+      it "creates a report and send to email service" do
+        post :send_report
 
         expect(response).to redirect_to(produtos_path)
         expect(response.status).to eq(302)
