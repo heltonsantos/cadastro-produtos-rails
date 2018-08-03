@@ -10,6 +10,8 @@ class ProdutoWorker
     Produto.write_csv(job_report.file_name)
 
     job_report.update({:status => "DONE"})
+
+    SendReportWorker.perform_async(job_report_id)
     
   end
 end

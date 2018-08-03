@@ -127,17 +127,4 @@ describe ProdutosController do
     end  
   end
 
-  describe "POST send_report" do
-    context 'when the products are reported and sent by email' do  
-      it "creates a report and send to email service" do
-        post :send_report
-
-        expect(response).to redirect_to(produtos_path)
-        expect(response.status).to eq(302)
-
-
-      end
-    end  
-  end
-
 end

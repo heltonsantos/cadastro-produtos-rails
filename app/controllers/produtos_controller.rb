@@ -78,12 +78,6 @@ class ProdutosController < ApplicationController
     redirect_to produtos_path
   end 
 
-  def send_report
-    SendReportWorker.perform_async
-
-    redirect_to produtos_path
-  end    
-
   private
 
   def find_product

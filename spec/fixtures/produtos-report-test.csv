@@ -1,0 +1,7 @@
+sku,nome,descricao,quantidade,preco,ean
+CA-123456789,Camisa Polo,Descrição da camisa.,100,109.99,12345678910
+CL-123456789,Calça,Descrição da calça.,100,149.9,12345678911
+CX-123456789,Camisa Xadrez,Descrição da camisa.,150,159.9,1236214578956
+ME-12345678,Meião,Descrição do meião.,150,19.9,123456789
+SA-123456789,Sapato Casual,Descrição do sapato casual.,50,149.99,123456789
+CR-123456789,Camisa Regata,Descrição da camisa regata.,200,49.9,123456789
