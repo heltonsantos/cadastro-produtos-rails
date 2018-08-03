@@ -5,7 +5,7 @@ Sidekiq::Testing.fake!
 RSpec.describe ProdutoWorker, type: :worker do
 
   context 'when the worker is created' do
-    it "creates workers" do
+    it "creates the worker" do
       
       file_name = "produtos-report-#{Time.now.to_i}.csv"
       job_report = JobReport.create({:file_name => file_name, :status => "enqueued"})
